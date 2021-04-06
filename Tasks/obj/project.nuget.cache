@@ -1,0 +1,21 @@
+{
+  "version": 2,
+  "dgSpecHash": "7IgSUG5O0UDbGkyelD+RySAWie5W3KtpnMeLD0NQqG8AFzbUJSjKbOsNdsg6obuqqp1fGlpVG5nslg+a1WezsA==",
+  "success": true,
+  "projectFilePath": "D:\\New folder (3)\\Tasks\\Tasks.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\abashir\\.nuget\\packages\\dotnetseleniumextras.pageobjects\\3.11.0\\dotnetseleniumextras.pageobjects.3.11.0.nupkg.sha512",
+    "C:\\Users\\abashir\\.nuget\\packages\\dotnetseleniumextras.pageobjects.core\\3.12.0\\dotnetseleniumextras.pageobjects.core.3.12.0.nupkg.sha512",
+    "C:\\Users\\abashir\\.nuget\\packages\\dotnetseleniumextras.waithelpers\\3.11.0\\dotnetseleniumextras.waithelpers.3.11.0.nupkg.sha512",
+    "C:\\Users\\abashir\\.nuget\\packages\\microsoft.codecoverage\\16.5.0\\microsoft.codecoverage.16.5.0.nupkg.sha512",
+    "C:\\Users\\abashir\\.nuget\\packages\\microsoft.net.test.sdk\\16.5.0\\microsoft.net.test.sdk.16.5.0.nupkg.sha512",
+    "C:\\Users\\abashir\\.nuget\\packages\\nunit\\3.12.0\\nunit.3.12.0.nupkg.sha512",
+    "C:\\Users\\abashir\\.nuget\\packages\\nunit3testadapter\\3.16.1\\nunit3testadapter.3.16.1.nupkg.sha512",
+    "C:\\Users\\abashir\\.nuget\\packages\\selenium.firefox.webdriver\\0.27.0\\selenium.firefox.webdriver.0.27.0.nupkg.sha512",
+    "C:\\Users\\abashir\\.nuget\\packages\\selenium.support\\3.141.0\\selenium.support.3.141.0.nupkg.sha512",
+    "C:\\Users\\abashir\\.nuget\\packages\\selenium.webdriver\\3.141.0\\selenium.webdriver.3.141.0.nupkg.sha512",
+    "C:\\Users\\abashir\\.nuget\\packages\\selenium.webdriver.chromedriver\\89.0.4389.2300\\selenium.webdriver.chromedriver.89.0.4389.2300.nupkg.sha512",
+    "C:\\Users\\abashir\\.nuget\\packages\\testproject\\1.0.0\\testproject.1.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
