@@ -1,5 +1,5 @@
 # Task-Project- changes
-download the project and do the follwing step
-1:Open the solution
-2:open the TestScrip forlder
-3:right click on the TestSuit1 class and click on Run tests
+Download the project and do the follwing steps.
+1. Open the solution file with extension .sln file.
+2: In Visual studion  right click on  Test1_suit.cs under TestScript folder and click on run tests. 
+3. Project will run accordingly.
