@@ -19,7 +19,6 @@ namespace Tasks.Pages
            
         }
         By PracticeFormBtn = By.XPath("//span[contains(text(),'Practice Form')]");
-        By MainformBtn = By.XPath("//h5[contains(text(),'Forms')]");
         By AccorForm = By.XPath("//div[.='Forms']");
         By FirstNameTxt = By.Id("firstName");
         By LastNameTxt = By.Id("lastName");
@@ -51,12 +50,6 @@ namespace Tasks.Pages
             string message = driver.FindElement(SuccessMessage).Text;
             Assert.AreEqual("Thanks for submitting the form", message);
         }
-        //Click on Form button on Main page
-        public void click_MainFormsBtn()
-        {
-            driver.FindElement(MainformBtn).Click();
-
-        }
         //Click on Form Accordian
         public void click_AccorFormBtn()
         {
@@ -71,8 +64,6 @@ namespace Tasks.Pages
         //Navigate to Forms Page
         public void Navigate()
         {
-
-              click_MainFormsBtn();
             //Click on the Accordian of  Forms
             click_AccorFormBtn();
             click_PracticeForm();
