@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,181 +16,157 @@ namespace Tasks.Pages
         public FormsPage(IWebDriver driver)
         {
             this.driver = driver; 
-
            
         }
-        By btn_PracticeForm = By.XPath("//span[contains(text(),'Practice Form')]");
-
-        By btn_Mainform = By.XPath("//h5[contains(text(),'Forms')]");
-
-        By Accor_form = By.XPath("//div[.='Forms']");
-
-        By firstName = By.Id("firstName");
-        
-        By LastName = By.Id("lastName");
-
-        By Email = By.Id("userEmail");
-
-        By Gender_Male = By.ClassName("custom-control-label");
-
-        By Gender_Female = By.XPath("//*[@id='genterWrapper']/div[2]/div[2]/label");
-
-        By Gender_Other = By.Id("gender-radio-3");
-
-        By Mobile_Number = By.Id("userNumber");
-
+        By PracticeFormBtn = By.XPath("//span[contains(text(),'Practice Form')]");
+        By MainformBtn = By.XPath("//h5[contains(text(),'Forms')]");
+        By AccorForm = By.XPath("//div[.='Forms']");
+        By FirstNameTxt = By.Id("firstName");
+        By LastNameTxt = By.Id("lastName");
+        By EmailTxt = By.Id("userEmail");
+        By GenderMale = By.ClassName("custom-control-label");
+        By GenderFemale = By.XPath("//*[@id='genterWrapper']/div[2]/div[2]/label");
+        By GenderOther = By.Id("gender-radio-3");
+        By MobileNumber = By.Id("userNumber");
         By Subject = By.Id("subjectsInput");
-
-        By hobbies_Sports = By.Id("hobbies-checkbox-1");
-        By hobbies_Reading = By.Id("hobbies-checkbox-2");
-        By hobbies_Music = By.Id("hobbies-checkbox-3");
-
-        By Submit_button = By.Id("submit");
-        By currentAddress = By.Id("currentAddress");
-
+        By HobbiesSports = By.Id("hobbies-checkbox-1");
+        By HobbiesReading = By.Id("hobbies-checkbox-2");
+        By HobbiesMusic = By.Id("hobbies-checkbox-3");
+        By SubmitBtn = By.Id("submit");
+        By CurrentAddress = By.Id("currentAddress");
         By Calender = By.Id("dateOfBirthInput");
-        By Success_Message = By.Id("example-modal-sizes-title-lg");
+        By SuccessMessage = By.Id("example-modal-sizes-title-lg");
 
-        public void enterValue_firstName(string value)
+        public void enterValue_FirstName(string value)
         {
-            driver.FindElement(firstName).Click();
-            driver.FindElement(firstName).Clear();
-            driver.FindElement(firstName).SendKeys(value);
+            driver.FindElement(FirstNameTxt).Click();
+            driver.FindElement(FirstNameTxt).Clear();
+            driver.FindElement(FirstNameTxt).SendKeys(value);
 
         }
         
-        public void Validate_sucessMessage()
+        public void validate_SucessMessage()
         {
 
-            string message = driver.FindElement(Success_Message).Text;
-
+            string message = driver.FindElement(SuccessMessage).Text;
             Assert.AreEqual("Thanks for submitting the form", message);
         }
         //Click on Form button on Main page
-        public void click_btnMainForms()
+        public void click_MainFormsBtn()
         {
-            driver.FindElement(btn_Mainform).Click();
+            driver.FindElement(MainformBtn).Click();
 
         }
         //Click on Form Accordian
-        public void click_btn_AccorForm()
+        public void click_AccorFormBtn()
         {
-            driver.FindElement(Accor_form).Click();
+            driver.FindElement(AccorForm).Click();
         }
         //Click on the Practice form
         public void click_PracticeForm()
         {
-            driver.FindElement(btn_PracticeForm).Click();
+            driver.FindElement(PracticeFormBtn).Click();
 
         }
         //Navigate to Forms Page
         public void Navigate()
         {
 
-              click_btnMainForms();
+              click_MainFormsBtn();
             //Click on the Accordian of  Forms
-            click_btn_AccorForm();
-            //Click on the Practice Form 
-            // System.Threading.Thread.Sleep(10000);
-           click_PracticeForm();
+            click_AccorFormBtn();
+            click_PracticeForm();
             
         }
-        public void pick_date() {
+        public void pick_Date() {
             driver.FindElement(Calender).Click();
             driver.FindElement(By.XPath("//div[@class='react-datepicker__day react-datepicker__day--005']")).Click();
         }
-        public void enterValue_lastName(string value)
+        public void enterValue_LastName(string value)
         {
-            driver.FindElement(LastName).Click();
-            driver.FindElement(LastName).Clear();
-            driver.FindElement(LastName).SendKeys(value);
+            driver.FindElement(LastNameTxt).Click();
+            driver.FindElement(LastNameTxt).Clear();
+            driver.FindElement(LastNameTxt).SendKeys(value);
 
         }
 
         public void enterValue_Email(string value)
         {
 
-            driver.FindElement(Email).Click();
-            driver.FindElement(Email).Clear();
-            driver.FindElement(Email).SendKeys(value);
+            driver.FindElement(EmailTxt).Click();
+            driver.FindElement(EmailTxt).Clear();
+            driver.FindElement(EmailTxt).SendKeys(value);
 
         }
 
-        public void Click_Male(string value)
+        public void click_Male(string value)
         {  
              if (value.Equals("Male")) {
-                 driver.FindElement(Gender_Male).Click();
-             } else if (value.Equals("Female")) {
-                 driver.FindElement(Gender_Female).Click();
+                 driver.FindElement(GenderMale).Click();
+             } else if(value.Equals("Female")) {
+                 driver.FindElement(GenderFemale).Click();
              }
-             else {
-              //driver.FindElement(Gender_Other).Click();
-             }
+             
             
         }
 
-        public void Click_Female()
+        public void click_Female()
         {
-            driver.FindElement(Gender_Female).Click();
-             }
+            driver.FindElement(GenderFemale).Click();
+             
+        }
 
 
         public void enterValue_MobileNumber(string value)
         {
-            driver.FindElement(Mobile_Number).Click();
-            driver.FindElement(Mobile_Number).Clear();
-            driver.FindElement(Mobile_Number).SendKeys(value);
+            driver.FindElement(MobileNumber).Click();
+            driver.FindElement(MobileNumber).Clear();
+            driver.FindElement(MobileNumber).SendKeys(value);
              
 
         }
-        public void Click_btnSubmit()
+        public void click_SubmitBtn()
         {
-           
             js = (IJavaScriptExecutor)driver;
             js.ExecuteScript("arguments[0].scrollIntoView();", driver.FindElement(By.Id("submit")));
-            driver.FindElement(Submit_button).Click();
+            driver.FindElement(SubmitBtn).Click();
 
         }
 
-        public void Validate_Mandatary_FirstName() {
+        public string validate_Mandatary_FirstName() {
 
            js = (IJavaScriptExecutor)driver;
-            js.ExecuteScript("arguments[0].scrollIntoView();", driver.FindElement(firstName));
-            string Color=driver.FindElement(firstName).GetCssValue("border-color");
-            string status= driver.FindElement(firstName).GetAttribute("required"); 
-            Assert.AreEqual("true", status);
-             Console.WriteLine(status);
+            js.ExecuteScript("arguments[0].scrollIntoView();", driver.FindElement(FirstNameTxt));
+            string Color=driver.FindElement(FirstNameTxt).GetCssValue("border-color");
+            string status= driver.FindElement(FirstNameTxt).GetAttribute("required");
+            return status;
         }
         
-        public void Validate_Mandatary_LastName()
+        public string validate_Mandatary_LastName()
         {
             
-            js.ExecuteScript("arguments[0].scrollIntoView();", driver.FindElement(LastName));
-            string Color = driver.FindElement(firstName).GetCssValue("border-color");
-//            Assert.AreEqual("rgba(220, 53, 69, 1)", Color);
-            string status = driver.FindElement(LastName).GetAttribute("required");
-            Assert.AreEqual("true", status);
-            Console.WriteLine(status);
+            js.ExecuteScript("arguments[0].scrollIntoView();", driver.FindElement(LastNameTxt));
+            string Color = driver.FindElement(FirstNameTxt).GetCssValue("border-color");
+            string status = driver.FindElement(LastNameTxt).GetAttribute("required");
+            return status;
+             
 
         }
-        public void Validate_Mandatary_Gender()
+        public string validate_Mandatary_Gender()
         {
-
-            string Color = driver.FindElement(Gender_Other).GetCssValue("color");
-//            Assert.AreEqual("rgba(220, 53, 69, 1)", Color);
-            string status = driver.FindElement(Gender_Other).GetAttribute("required");
-            Assert.AreEqual("true", status);
-            Console.WriteLine(status);
+            string Color = driver.FindElement(GenderOther).GetCssValue("color");
+            string status = driver.FindElement(GenderOther).GetAttribute("required");
+            return status;
+          
         }
-        public void Validate_Mandatary_MobileNumber()
+        public string validate_Mandatary_MobileNumber()
         {
-
             js = (IJavaScriptExecutor)driver;
-            js.ExecuteScript("arguments[0].scrollIntoView();", driver.FindElement(Mobile_Number));
-            string Color = driver.FindElement(Mobile_Number).GetCssValue("border-color");
-            string status = driver.FindElement(Mobile_Number).GetAttribute("required");
-            Assert.AreEqual("true", status);
-            Console.WriteLine(status);
+            js.ExecuteScript("arguments[0].scrollIntoView();", driver.FindElement(MobileNumber));
+            string Color = driver.FindElement(MobileNumber).GetCssValue("border-color");
+            string status = driver.FindElement(MobileNumber).GetAttribute("required");
+            return status;
+           
         }
 
 
