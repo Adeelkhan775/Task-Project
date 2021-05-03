@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,36 +24,24 @@ namespace Tasks.TestScripts
         •	Click 'Practice Form'
         •	Fill form using "Value object" pattern (only required fields), submit form
         •	Verify that form submitted successfully
-
          */
 
         [Test, Order(1)]
         public void TestMethod1()
         {
-
-            try
-            {
-                if (driver != null)
-                {
-                    formpage = new FormsPage(driver);
-                    formpage.Navigate();
-                    Thread.Sleep(1000);
-                    formpage.Click_btnSubmit();
-                    Thread.Sleep(1000);
-                    formpage.Validate_Mandatary_FirstName();
-                    formpage.Validate_Mandatary_LastName();
-                    formpage.Validate_Mandatary_MobileNumber();
-                    formpage.Validate_Mandatary_Gender();
-                }
-            }
-            catch (Exception e)
-            {
-                throw e.InnerException;
-            }
+            formpage = new FormsPage(driver);
+            formpage.Navigate();
+            Thread.Sleep(1000);
+            formpage.click_SubmitBtn();
+            Thread.Sleep(1000);
+            Assert.AreEqual("true", formpage.validate_Mandatary_FirstName());
+            Assert.AreEqual("true", formpage.validate_Mandatary_LastName());
+            Assert.AreEqual("true", formpage.validate_Mandatary_MobileNumber());
+            Assert.AreEqual("true", formpage.validate_Mandatary_Gender());
 
         }
 
-        /*Case 2:
+                 /*Case 2:
                 •	Main steps:
                 •	Open https://demoqa.com/
                 •	Navigate to Forms
@@ -61,34 +49,29 @@ namespace Tasks.TestScripts
                 •	Submit empty form
                 •	Verify "First Name", "Last Name", "Gender" are required fields
                 */
+
         [Test, Order(2)]
         public void TestMethod2()
         {
-            try
-            {
-                if (driver != null)
-                {
-                    formpage = new FormsPage(driver);
-                    formpage.Navigate();
-                    formpage.enterValue_firstName("Adeel");
-                    formpage.enterValue_lastName("Bashir");
-                    formpage.Click_Male("Male");
-                    formpage.enterValue_MobileNumber("923115515448");
-                    formpage.enterValue_Email("adeelkhan775@gmail.com");
-                    formpage.Click_btnSubmit();
-                    formpage.Validate_sucessMessage();
-                }
-            }
-            catch (Exception e)
-            {
+            formpage = new FormsPage(driver);
+            formpage.Navigate();
+            Thread.Sleep(1000);
+            formpage.enterValue_FirstName("Adeel");
+            formpage.enterValue_LastName("Bashir");
+            formpage.click_Male("Male");
+            formpage.enterValue_MobileNumber("923115515448");
+            formpage.enterValue_Email("adeelkhan775@gmail.com");
+            formpage.click_SubmitBtn();
+            formpage.validate_SucessMessage();
 
-                throw e.InnerException;
-            }
+
         }
 
-
-       
-
+        [TearDown]
+        public void teardown() {
+        
+            driver.Close();
+        }
 
     }
 
