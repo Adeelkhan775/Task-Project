@@ -19,7 +19,7 @@ namespace Tasks.Base
 		{
 			driver = new ChromeDriver();
 			driver.Manage().Window.Maximize();
-			driver.Navigate().GoToUrl("https://demoqa.com/");
+			driver.Navigate().GoToUrl("https://demoqa.com/forms");
 			driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20);
 			driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(20);
 			}
