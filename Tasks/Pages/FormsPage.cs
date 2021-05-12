@@ -43,7 +43,7 @@ namespace Tasks.Pages
 
         }
         //Navigate to Forms Page
-        public void navigate()
+        public void navigateToForms()
         {
             //Click on the Accordian of  Forms
             clickaccorFormBtn();
