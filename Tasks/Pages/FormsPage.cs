@@ -1,8 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using NUnit.Framework;
 using OpenQA.Selenium;
 namespace Tasks.Pages
@@ -12,155 +7,109 @@ namespace Tasks.Pages
         public IWebDriver driver;
         public IWebElement element;
         public IJavaScriptExecutor js;
-
         public FormsPage(IWebDriver driver)
         {
-            this.driver = driver; 
-           
+            this.driver = driver;            
         }
-        By PracticeFormBtn = By.XPath("//span[contains(text(),'Practice Form')]");
-        By AccorForm = By.XPath("//div[.='Forms']");
-        By FirstNameTxt = By.Id("firstName");
-        By LastNameTxt = By.Id("lastName");
-        By EmailTxt = By.Id("userEmail");
-        By GenderMale = By.ClassName("custom-control-label");
-        By GenderFemale = By.XPath("//*[@id='genterWrapper']/div[2]/div[2]/label");
-        By GenderOther = By.Id("gender-radio-3");
-        By MobileNumber = By.Id("userNumber");
-        By Subject = By.Id("subjectsInput");
-        By HobbiesSports = By.Id("hobbies-checkbox-1");
-        By HobbiesReading = By.Id("hobbies-checkbox-2");
-        By HobbiesMusic = By.Id("hobbies-checkbox-3");
-        By SubmitBtn = By.Id("submit");
-        By CurrentAddress = By.Id("currentAddress");
-        By Calender = By.Id("dateOfBirthInput");
-        By SuccessMessage = By.Id("example-modal-sizes-title-lg");
-
-        public void enterValue_FirstName(string value)
+        By practiceFormBtn = By.XPath("//span[contains(text(),'Practice Form')]");
+        By accorForm = By.XPath("//div[.='Forms']");
+        By firstNameTxt = By.Id("firstName");
+        By lastNameTxt = By.Id("lastName");
+        By emailTxt = By.Id("userEmail");
+        By genderMale = By.ClassName("custom-control-label");
+        By mobileNumber = By.Id("userNumber");
+        By submitBtn = By.Id("submit");
+        By successMessage = By.Id("example-modal-sizes-title-lg");
+        public void enterFirstName(string value)
         {
-            driver.FindElement(FirstNameTxt).Click();
-            driver.FindElement(FirstNameTxt).Clear();
-            driver.FindElement(FirstNameTxt).SendKeys(value);
-
-        }
-        
-        public void validate_SucessMessage()
+            driver.FindElement(firstNameTxt).Click();
+            driver.FindElement(firstNameTxt).Clear();
+            driver.FindElement(firstNameTxt).SendKeys(value);
+        }       
+        public void validateSucessMessage()
         {
-
-            string message = driver.FindElement(SuccessMessage).Text;
+            string message = driver.FindElement(successMessage).Text;
             Assert.AreEqual("Thanks for submitting the form", message);
         }
         //Click on Form Accordian
-        public void click_AccorFormBtn()
+        public void clickaccorFormBtn()
         {
-            driver.FindElement(AccorForm).Click();
+            driver.FindElement(accorForm).Click();
         }
         //Click on the Practice form
-        public void click_PracticeForm()
+        public void clickPracticeForm()
         {
-            driver.FindElement(PracticeFormBtn).Click();
+            driver.FindElement(practiceFormBtn).Click();
 
         }
         //Navigate to Forms Page
-        public void Navigate()
+        public void navigate()
         {
             //Click on the Accordian of  Forms
-            click_AccorFormBtn();
-            click_PracticeForm();
-            
+            clickaccorFormBtn();
+            clickPracticeForm();            
         }
-        public void pick_Date() {
-            driver.FindElement(Calender).Click();
-            driver.FindElement(By.XPath("//div[@class='react-datepicker__day react-datepicker__day--005']")).Click();
-        }
-        public void enterValue_LastName(string value)
+        public void enterLastName(string value)
         {
-            driver.FindElement(LastNameTxt).Click();
-            driver.FindElement(LastNameTxt).Clear();
-            driver.FindElement(LastNameTxt).SendKeys(value);
-
+            driver.FindElement(lastNameTxt).Click();
+            driver.FindElement(lastNameTxt).Clear();
+            driver.FindElement(lastNameTxt).SendKeys(value);
         }
-
-        public void enterValue_Email(string value)
+        public void enterEmail(string value)
         {
-
-            driver.FindElement(EmailTxt).Click();
-            driver.FindElement(EmailTxt).Clear();
-            driver.FindElement(EmailTxt).SendKeys(value);
-
+            driver.FindElement(emailTxt).Click();
+            driver.FindElement(emailTxt).Clear();
+            driver.FindElement(emailTxt).SendKeys(value);
         }
-
-        public void click_Male(string value)
-        {  
-             if (value.Equals("Male")) {
-                 driver.FindElement(GenderMale).Click();
-             } else if(value.Equals("Female")) {
-                 driver.FindElement(GenderFemale).Click();
-             }
-             
-            
-        }
-
-        public void click_Female()
+        public void clickMale(string value)
         {
-            driver.FindElement(GenderFemale).Click();
-             
-        }
-
-
-        public void enterValue_MobileNumber(string value)
+            if (value.Equals("Male"))
+            {
+                driver.FindElement(genderMale).Click();
+            }            
+        }         
+        public void enterMobileNumber(long value)
         {
-            driver.FindElement(MobileNumber).Click();
-            driver.FindElement(MobileNumber).Clear();
-            driver.FindElement(MobileNumber).SendKeys(value);
-             
-
+            driver.FindElement(mobileNumber).Click();
+            driver.FindElement(mobileNumber).Clear();
+            driver.FindElement(mobileNumber).SendKeys(value.ToString());      
         }
-        public void click_SubmitBtn()
+        public void clickSubmitBtn()
         {
             js = (IJavaScriptExecutor)driver;
             js.ExecuteScript("arguments[0].scrollIntoView();", driver.FindElement(By.Id("submit")));
-            driver.FindElement(SubmitBtn).Click();
-
+            driver.FindElement(submitBtn).Click();
         }
-
-        public string validate_Mandatary_FirstName() {
-
-           js = (IJavaScriptExecutor)driver;
-            js.ExecuteScript("arguments[0].scrollIntoView();", driver.FindElement(FirstNameTxt));
-            string Color=driver.FindElement(FirstNameTxt).GetCssValue("border-color");
-            string status= driver.FindElement(FirstNameTxt).GetAttribute("required");
+        public string validateMandatoryFirstName() 
+        {
+            js = (IJavaScriptExecutor)driver;
+            js.ExecuteScript("arguments[0].scrollIntoView();", driver.FindElement(firstNameTxt));
+            string Color=driver.FindElement(firstNameTxt).GetCssValue("border-color");
+            string status= driver.FindElement(firstNameTxt).GetAttribute("required");
             return status;
         }
         
-        public string validate_Mandatary_LastName()
-        {
-            
-            js.ExecuteScript("arguments[0].scrollIntoView();", driver.FindElement(LastNameTxt));
-            string Color = driver.FindElement(FirstNameTxt).GetCssValue("border-color");
-            string status = driver.FindElement(LastNameTxt).GetAttribute("required");
+        public string validateMandatoryLastName()
+        {           
+            js.ExecuteScript("arguments[0].scrollIntoView();", driver.FindElement(lastNameTxt));
+            string Color = driver.FindElement(firstNameTxt).GetCssValue("border-color");
+            string status = driver.FindElement(lastNameTxt).GetAttribute("required");
             return status;
-             
-
         }
-        public string validate_Mandatary_Gender()
+        public string validateMandatoryGender()
         {
-            string Color = driver.FindElement(GenderOther).GetCssValue("color");
-            string status = driver.FindElement(GenderOther).GetAttribute("required");
-            return status;
-          
+            string Color = driver.FindElement(genderMale).GetCssValue("color");
+            string status = driver.FindElement(genderMale).GetAttribute("required");
+            return status;          
         }
-        public string validate_Mandatary_MobileNumber()
+        public string validateMandatoryMobileNumber()
         {
             js = (IJavaScriptExecutor)driver;
-            js.ExecuteScript("arguments[0].scrollIntoView();", driver.FindElement(MobileNumber));
-            string Color = driver.FindElement(MobileNumber).GetCssValue("border-color");
-            string status = driver.FindElement(MobileNumber).GetAttribute("required");
-            return status;
-           
+            js.ExecuteScript("arguments[0].scrollIntoView();", driver.FindElement(mobileNumber));
+            string Color = driver.FindElement(mobileNumber).GetCssValue("border-color");
+            string status = driver.FindElement(mobileNumber).GetAttribute("required");
+            return status;           
         }
-
-
     }
 }
 

@@ -1,8 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
@@ -10,10 +6,9 @@ using OpenQA.Selenium.Chrome;
 namespace Tasks.Base
 {
 
-    public class Base_Class
+    public class BaseClass
     {
 		public IWebDriver driver;
-		
 		[SetUp]
 		public void initialization()
 		{
@@ -22,9 +17,9 @@ namespace Tasks.Base
 			driver.Navigate().GoToUrl("https://demoqa.com/forms");
 			driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20);
 			driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(20);
-			}
+		}
 		[TearDown]
-		public void TearDown()
+		public void tearDown()
 		{
 			 driver.Quit();
 		}
