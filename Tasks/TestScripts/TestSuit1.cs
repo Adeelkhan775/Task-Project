@@ -23,7 +23,7 @@ namespace Tasks.TestScripts
         public void testMethod1()
         {
             formPage = new FormsPage(driver);
-            formPage.navigate();
+            formPage.navigateToForms();
             Thread.Sleep(1000);
             formPage.clickSubmitBtn();
             Thread.Sleep(1000);
@@ -46,7 +46,7 @@ namespace Tasks.TestScripts
         public void testMethod2()
         {
             formPage = new FormsPage(driver);
-            formPage.navigate();
+            formPage.navigateToForms();
             Thread.Sleep(1000);
             PersonInfo personInfo = new PersonInfo("Adeel", "Bashir", "Male", 03115515448, "adeelkhan775@gmail.com");
             formPage.enterFirstName(personInfo.firstName);
