@@ -27,10 +27,10 @@ namespace Tasks.TestScripts
             Thread.Sleep(1000);
             formPage.clickSubmitBtn();
             Thread.Sleep(1000);
-            Assert.AreEqual("true", formPage.validateMandataryFirstName());
-            Assert.AreEqual("true", formPage.validateMandataryLastName());
-            Assert.AreEqual("true", formPage.validateMandataryMobileNumber());
-            Assert.AreEqual("true", formPage.validateMandataryGender());
+            Assert.AreEqual("true", formPage.validateMandatoryFirstName());
+            Assert.AreEqual("true", formPage.validateMandatoryLastName());
+            Assert.AreEqual("true", formPage.validateMandatoryMobileNumber());
+            Assert.AreEqual("true", formPage.validateMandatoryGender());
         }
 
         /*Case 2
