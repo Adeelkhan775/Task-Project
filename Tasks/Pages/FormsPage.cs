@@ -17,6 +17,7 @@ namespace Tasks.Pages
         By lastNameTxt = By.Id("lastName");
         By emailTxt = By.Id("userEmail");
         By genderMale = By.ClassName("custom-control-label");
+        By genderOther = By.Id("gender-radio-3");
         By mobileNumber = By.Id("userNumber");
         By submitBtn = By.Id("submit");
         By successMessage = By.Id("example-modal-sizes-title-lg");
@@ -98,8 +99,9 @@ namespace Tasks.Pages
         }
         public string validateMandatoryGender()
         {
-            string Color = driver.FindElement(genderMale).GetCssValue("color");
-            string status = driver.FindElement(genderMale).GetAttribute("required");
+            js.ExecuteScript("arguments[0].scrollIntoView();", driver.FindElement(genderMale));
+            string Color = driver.FindElement(genderOther).GetCssValue("color");
+            string status = driver.FindElement(genderOther).GetAttribute("required");
             return status;          
         }
         public string validateMandatoryMobileNumber()
@@ -112,4 +114,3 @@ namespace Tasks.Pages
         }
     }
 }
-
