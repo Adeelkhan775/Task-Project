@@ -1,7 +1,7 @@
 using NUnit.Framework;
 using Tasks.Base;
 using Tasks.Pages;
-using System.Threading;
+
 
 namespace Tasks.TestScripts
 {
@@ -19,18 +19,12 @@ namespace Tasks.TestScripts
        •	Verify "First Name", "Last Name", "Gender" are required fields
        */
 
-        [Test, Order(1)]
+       [Test, Order(1)]
         public void testMethod1()
         {
             formPage = new FormsPage(driver);
             formPage.navigateToForms();
-            Thread.Sleep(1000);
-            formPage.clickSubmitBtn();
-            Thread.Sleep(1000);
-            Assert.AreEqual("true", formPage.validateMandatoryFirstName());
-            Assert.AreEqual("true", formPage.validateMandatoryLastName());
-            Assert.AreEqual("true", formPage.validateMandatoryMobileNumber());
-            Assert.AreEqual("true", formPage.validateMandatoryGender());
+            formPage.validateAllMandatoryFields();
         }
 
         /*Case 2
@@ -47,15 +41,7 @@ namespace Tasks.TestScripts
         {
             formPage = new FormsPage(driver);
             formPage.navigateToForms();
-            Thread.Sleep(1000);
-            PersonInfo personInfo = new PersonInfo("Adeel", "Bashir", "Male", 03115515448, "adeelkhan775@gmail.com");
-            formPage.enterFirstName(personInfo.firstName);
-            formPage.enterLastName(personInfo.lastName);
-            formPage.clickMale(personInfo.sex);
-            formPage.enterMobileNumber(personInfo.mobileNumber);
-            formPage.enterEmail(personInfo.emailAddress);
-            formPage.clickSubmitBtn();
-            Thread.Sleep(1000);
+            formPage.fillForm();
             formPage.validateSucessMessage();
         }
 
@@ -64,7 +50,5 @@ namespace Tasks.TestScripts
         {   
             driver.Close();
         }
-
     }
-
 }
