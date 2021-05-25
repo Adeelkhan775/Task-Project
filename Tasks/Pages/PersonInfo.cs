@@ -1,4 +1,3 @@
-﻿
 namespace Tasks.Pages
 {
     class PersonInfo
@@ -6,13 +5,13 @@ namespace Tasks.Pages
         public string firstName { get; }
         public string lastName { get; }
         public long mobileNumber { get; }
-        public string sex { get; }
+        public string gender { get; }
         public string emailAddress { get; }
-        public PersonInfo(string firstName, string lastName, string sex, long mobileNumber, string emailAddress)
+        public PersonInfo(string firstName, string lastName, string gender, long mobileNumber, string emailAddress)
         {
             this.firstName = firstName;
             this.lastName = lastName;
-            this.sex = sex;
+            this.gender = gender;
             this.emailAddress = emailAddress;
             this.mobileNumber = mobileNumber;
         }
