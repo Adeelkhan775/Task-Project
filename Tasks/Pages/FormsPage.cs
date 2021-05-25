@@ -1,11 +1,12 @@
 using NUnit.Framework;
 using OpenQA.Selenium;
+using System.Threading;
+
 namespace Tasks.Pages
 {
   public class FormsPage
     { 
         public IWebDriver driver;
-        public IWebElement element;
         public IJavaScriptExecutor js;
         public FormsPage(IWebDriver driver)
         {
@@ -48,7 +49,8 @@ namespace Tasks.Pages
         {
             //Click on the Accordian of  Forms
             clickaccorFormBtn();
-            clickPracticeForm();            
+            clickPracticeForm();
+            Thread.Sleep(1000);
         }
         public void enterLastName(string value)
         {
@@ -75,42 +77,56 @@ namespace Tasks.Pages
             driver.FindElement(mobileNumber).Clear();
             driver.FindElement(mobileNumber).SendKeys(value.ToString());      
         }
-        public void clickSubmitBtn()
+         public void clickSubmitBtn()
         {
             js = (IJavaScriptExecutor)driver;
             js.ExecuteScript("arguments[0].scrollIntoView();", driver.FindElement(By.Id("submit")));
             driver.FindElement(submitBtn).Click();
+            Thread.Sleep(1000);
         }
-        public string validateMandatoryFirstName() 
+        // Method to fill and Submit form
+        public void fillForm()
+        {
+            PersonInfo personInfo = new PersonInfo("Adeel", "Bashir", "Male", 03115515448, "adeelkhan775@gmail.com");
+            enterDataInFields(firstNameTxt,personInfo.firstName);
+            enterDataInFields(lastNameTxt,personInfo.lastName);
+            enterDataInFields(mobileNumber,personInfo.emailAddress);
+            enterDataInFields(mobileNumber,personInfo.emailAddress);
+            clickMale(personInfo.gender);
+            enterMobileNumber(personInfo.mobileNumber);
+            clickSubmitBtn();
+            Thread.Sleep(1000);
+        }
+        // Generic common method to enter data in text fields
+        public void enterDataInFields(By element, string text)
         {
             js = (IJavaScriptExecutor)driver;
-            js.ExecuteScript("arguments[0].scrollIntoView();", driver.FindElement(firstNameTxt));
-            string Color=driver.FindElement(firstNameTxt).GetCssValue("border-color");
-            string status= driver.FindElement(firstNameTxt).GetAttribute("required");
-            return status;
+            js.ExecuteScript("arguments[0].scrollIntoView();", driver.FindElement(element));
+            driver.FindElement(element).Click();
+            driver.FindElement(element).Clear();
+            driver.FindElement(element).SendKeys(text);
+
         }
-        
-        public string validateMandatoryLastName()
-        {           
-            js.ExecuteScript("arguments[0].scrollIntoView();", driver.FindElement(lastNameTxt));
-            string Color = driver.FindElement(firstNameTxt).GetCssValue("border-color");
-            string status = driver.FindElement(lastNameTxt).GetAttribute("required");
-            return status;
-        }
-        public string validateMandatoryGender()
-        {
-            js.ExecuteScript("arguments[0].scrollIntoView();", driver.FindElement(genderMale));
-            string Color = driver.FindElement(genderOther).GetCssValue("color");
-            string status = driver.FindElement(genderOther).GetAttribute("required");
-            return status;          
-        }
-        public string validateMandatoryMobileNumber()
+        // Method to validate all mandatory fields
+        public void validateAllMandatoryFields()
         {
             js = (IJavaScriptExecutor)driver;
-            js.ExecuteScript("arguments[0].scrollIntoView();", driver.FindElement(mobileNumber));
-            string Color = driver.FindElement(mobileNumber).GetCssValue("border-color");
-            string status = driver.FindElement(mobileNumber).GetAttribute("required");
-            return status;           
+            js.ExecuteScript("arguments[0].scrollIntoView();", driver.FindElement(submitBtn));
+            clickSubmitBtn();
+            Thread.Sleep(1000);
+            validateField(firstNameTxt);
+            validateField(lastNameTxt);
+            validateField(mobileNumber);
+            validateField(genderOther);
+        }
+        //Generic common method to validate fields
+        public void validateField(By element)
+        {
+            js = (IJavaScriptExecutor)driver;
+            js.ExecuteScript("arguments[0].scrollIntoView();", driver.FindElement(element));
+            string status = driver.FindElement(element).GetAttribute("required");
+            Assert.AreEqual("true", status);
         }
     }
 }
+
