@@ -10,7 +10,7 @@ namespace Tasks.Base
     {
 		public IWebDriver driver;
 		[SetUp]
-		public void initialization()
+		public void Initialization()
 		{
 			driver = new ChromeDriver();
 			driver.Manage().Window.Maximize();
@@ -19,7 +19,7 @@ namespace Tasks.Base
 			driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(20);
 		}
 		[TearDown]
-		public void tearDown()
+		public void TearDown()
 		{
 			 driver.Quit();
 		}
