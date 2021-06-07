@@ -12,24 +12,24 @@ namespace Tasks.TestScripts
 
         /*Case 1:
        •	Main steps:
-       •	Open https://demoqa.com/
+       •	Open https://demoqa.com/forms
        •	Navigate to Forms
        •	Click 'Practice Form'
        •	Submit empty form
-       •	Verify "First Name", "Last Name", "Gender" are required fields
+       •	Verify "First Name", "Last Name", "Gender" "Mobile Number "are required fields
        */
 
-       [Test, Order(1)]
-        public void testMethod1()
+        [Test, Order(1)]
+        public void TestMethod1()
         {
             formPage = new FormsPage(driver);
-            formPage.navigateToForms();
-            formPage.validateAllMandatoryFields();
+            formPage.NavigateToForms();
+            formPage.ValidateAllMandatoryFields();
         }
 
         /*Case 2
         •	Main steps:
-        •	Open https://demoqa.com/
+        •	Open https://demoqa.com/forms
         •	Navigate to Forms
         •	Click 'Practice Form'
         •	Fill form using "Value object" pattern (only required fields), submit form
@@ -37,18 +37,14 @@ namespace Tasks.TestScripts
          */
 
         [Test, Order(2)]
-        public void testMethod2()
+        public void TestMethod2()
         {
             formPage = new FormsPage(driver);
-            formPage.navigateToForms();
-            formPage.fillForm();
-            formPage.validateSucessMessage();
+            formPage.NavigateToForms();
+            formPage.FillForm();
+            formPage.ValidateSucessMessage();
         }
 
-        [TearDown]
-        public void closeTab()
-        {   
-            driver.Close();
-        }
     }
+
 }
