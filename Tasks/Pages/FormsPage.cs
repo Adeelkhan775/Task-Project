@@ -12,72 +12,54 @@ namespace Tasks.Pages
         {
             this.driver = driver;            
         }
-        By practiceFormBtn = By.XPath("//span[contains(text(),'Practice Form')]");
-        By accorForm = By.XPath("//div[.='Forms']");
-        By firstNameTxt = By.Id("firstName");
-        By lastNameTxt = By.Id("lastName");
-        By emailTxt = By.Id("userEmail");
-        By genderMale = By.ClassName("custom-control-label");
-        By genderOther = By.Id("gender-radio-3");
-        By mobileNumber = By.Id("userNumber");
-        By submitBtn = By.Id("submit");
-        By successMessage = By.Id("example-modal-sizes-title-lg");
-        public void enterFirstName(string value)
-        {
-            driver.FindElement(firstNameTxt).Click();
-            driver.FindElement(firstNameTxt).Clear();
-            driver.FindElement(firstNameTxt).SendKeys(value);
-        }       
-        public void validateSucessMessage()
+        public By practiceFormBtn = By.XPath("//span[contains(text(),'Practice Form')]");
+        public By accorForm = By.XPath("//div[.='Forms']");
+        public By firstNameTxt = By.Id("firstName");
+        public By lastNameTxt = By.Id("lastName");
+        public By genderMale = By.ClassName("custom-control-label");
+        public By genderOther = By.Id("gender-radio-3");
+        public By mobileNumber = By.Id("userNumber");
+        public By submitBtn = By.Id("submit");
+        public By successMessage = By.Id("example-modal-sizes-title-lg");
+        public void ValidateSucessMessage()
         {
             string message = driver.FindElement(successMessage).Text;
             Assert.AreEqual("Thanks for submitting the form", message);
         }
         //Click on Form Accordian
-        public void clickaccorFormBtn()
+        public void ClickAccorFormBtn()
         {
             driver.FindElement(accorForm).Click();
         }
         //Click on the Practice form
-        public void clickPracticeForm()
+        public void ClickPracticeForm()
         {
             driver.FindElement(practiceFormBtn).Click();
 
         }
         //Navigate to Forms Page
-        public void navigateToForms()
+        public void NavigateToForms()
         {
             //Click on the Accordian of  Forms
-            clickaccorFormBtn();
-            clickPracticeForm();
+            ClickAccorFormBtn();
+            Thread.Sleep(1000);
+            ClickPracticeForm();
             Thread.Sleep(1000);
         }
-        public void enterLastName(string value)
-        {
-            driver.FindElement(lastNameTxt).Click();
-            driver.FindElement(lastNameTxt).Clear();
-            driver.FindElement(lastNameTxt).SendKeys(value);
-        }
-        public void enterEmail(string value)
-        {
-            driver.FindElement(emailTxt).Click();
-            driver.FindElement(emailTxt).Clear();
-            driver.FindElement(emailTxt).SendKeys(value);
-        }
-        public void clickMale(string value)
+        public void ClickMale(string value)
         {
             if (value.Equals("Male"))
             {
                 driver.FindElement(genderMale).Click();
             }            
         }         
-        public void enterMobileNumber(long value)
+        public void EnterMobileNumber(long value)
         {
             driver.FindElement(mobileNumber).Click();
             driver.FindElement(mobileNumber).Clear();
             driver.FindElement(mobileNumber).SendKeys(value.ToString());      
         }
-         public void clickSubmitBtn()
+         public void ClickSubmitBtn()
         {
             js = (IJavaScriptExecutor)driver;
             js.ExecuteScript("arguments[0].scrollIntoView();", driver.FindElement(By.Id("submit")));
@@ -85,20 +67,18 @@ namespace Tasks.Pages
             Thread.Sleep(1000);
         }
         // Method to fill and Submit form
-        public void fillForm()
+        public void FillForm()
         {
-            PersonInfo personInfo = new PersonInfo("Adeel", "Bashir", "Male", 03115515448, "adeelkhan775@gmail.com");
-            enterDataInFields(firstNameTxt,personInfo.firstName);
-            enterDataInFields(lastNameTxt,personInfo.lastName);
-            enterDataInFields(mobileNumber,personInfo.emailAddress);
-            enterDataInFields(mobileNumber,personInfo.emailAddress);
-            clickMale(personInfo.gender);
-            enterMobileNumber(personInfo.mobileNumber);
-            clickSubmitBtn();
+            PersonInfo personInfo = new PersonInfo("Adeel", "Bashir", "Male", 03115515448);
+            EnterDataInFields(firstNameTxt,personInfo.firstName);
+            EnterDataInFields(lastNameTxt,personInfo.lastName);
+            ClickMale(personInfo.gender);
+            EnterMobileNumber(personInfo.mobileNumber);
+            ClickSubmitBtn();
             Thread.Sleep(1000);
         }
         // Generic common method to enter data in text fields
-        public void enterDataInFields(By element, string text)
+        public void EnterDataInFields(By element, string text)
         {
             js = (IJavaScriptExecutor)driver;
             js.ExecuteScript("arguments[0].scrollIntoView();", driver.FindElement(element));
@@ -107,20 +87,20 @@ namespace Tasks.Pages
             driver.FindElement(element).SendKeys(text);
 
         }
-        // Method to validate all mandatory fields
-        public void validateAllMandatoryFields()
+        // Method to Validate all mandatory fields
+        public void ValidateAllMandatoryFields()
         {
             js = (IJavaScriptExecutor)driver;
             js.ExecuteScript("arguments[0].scrollIntoView();", driver.FindElement(submitBtn));
-            clickSubmitBtn();
+            ClickSubmitBtn();
             Thread.Sleep(1000);
-            validateField(firstNameTxt);
-            validateField(lastNameTxt);
-            validateField(mobileNumber);
-            validateField(genderOther);
+            ValidateField(firstNameTxt);
+            ValidateField(lastNameTxt);
+            ValidateField(mobileNumber);
+            ValidateField(genderOther);
         }
-        //Generic common method to validate fields
-        public void validateField(By element)
+        //Generic common method to Validate fields
+        public void ValidateField(By element)
         {
             js = (IJavaScriptExecutor)driver;
             js.ExecuteScript("arguments[0].scrollIntoView();", driver.FindElement(element));
