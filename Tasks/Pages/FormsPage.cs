@@ -12,15 +12,16 @@ namespace Tasks.Pages
         {
             this.driver = driver;            
         }
-        public By practiceFormBtn = By.XPath("//span[contains(text(),'Practice Form')]");
-        public By accorForm = By.XPath("//div[.='Forms']");
-        public By firstNameTxt = By.Id("firstName");
-        public By lastNameTxt = By.Id("lastName");
-        public By genderMale = By.ClassName("custom-control-label");
-        public By genderOther = By.Id("gender-radio-3");
-        public By mobileNumber = By.Id("userNumber");
-        public By submitBtn = By.Id("submit");
-        public By successMessage = By.Id("example-modal-sizes-title-lg");
+        private By practiceFormBtn = By.XPath("//span[contains(text(),'Practice Form')]");
+        private By accorForm = By.XPath("//div[.='Forms']");
+        private By firstNameTxt = By.Id("firstName");
+        private By lastNameTxt = By.Id("lastName");
+        private By genderMale = By.ClassName("custom-control-label");
+        private By genderOther = By.Id("gender-radio-3");
+        private By mobileNumber = By.Id("userNumber");
+        private By submitBtn = By.Id("submit");
+        private By successMessage = By.Id("example-modal-sizes-title-lg");
+    
         public void ValidateSucessMessage()
         {
             string message = driver.FindElement(successMessage).Text;
